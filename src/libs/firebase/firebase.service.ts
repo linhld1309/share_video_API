@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import * as firebase from "firebase-admin";
-import { ServiceAccount } from "firebase-admin";
-import serviceAccount from "../../../firebase-service-account.json";
+import { Injectable } from '@nestjs/common';
+import * as firebase from 'firebase-admin';
+import { ServiceAccount } from 'firebase-admin';
+import serviceAccount from '../../../firebase-service-account.json';
 
 @Injectable()
 export class FirebaseService {
