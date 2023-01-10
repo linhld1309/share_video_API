@@ -7,7 +7,7 @@ import { FirebaseService } from "@/libs/firebase/firebase.service";
 
 type DecodedIdToken = firebaseAdmin.auth.DecodedIdToken;
 export type FirebaseAuthDecodedUser = Readonly<
-  Pick<DecodedIdToken, "uid" | "email" | "email_verified">
+  Pick<DecodedIdToken, "email" | "uid" | "email_verified">
 >
 
 export const StrategyName = "firebase-auth";
@@ -31,7 +31,7 @@ export class FirebaseAuthStrategy extends PassportStrategy(
   */
   async validate(jwtToken: string): Promise<auth.UserRecord> {
     const payload = await this.authorize(jwtToken);
-    const user = await this.firebase.getAuth().getUser(payload.id)
+    const user = await this.firebase.getAuth().getUser(payload.uid)
 
     if (user.disabled) {
       throw new ForbiddenException()

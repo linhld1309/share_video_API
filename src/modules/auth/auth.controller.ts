@@ -20,8 +20,7 @@ export class AuthController {
   @UseGuards(AuthGuard('firebase-auth'))
   @Post('/login')
   async login(@Request() req: { user: FirebaseAuthDecodedUser }) {
-    const userId = req.user.uid;
-
-    return this.authLoginService.login(userId)
+    const { uid, email } = req.user
+    return this.authLoginService.login(uid, email || "")
   }
 }

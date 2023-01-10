@@ -13,7 +13,7 @@ export class AuthResolver {
   @Mutation(() => Auth)
   @UseGuards(GqlFirebaseAuthGuard)
   async login(@CurrentUser() user: FirebaseAuthDecodedUser) {
-    const userId = user.uid
-    return this.authLoginService.login(userId)
+    const { uid, email } = user
+    return this.authLoginService.login(uid, email || "")
   }
 }
